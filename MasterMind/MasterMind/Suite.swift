@@ -34,7 +34,7 @@ class Suite: Observable{
         }
     }
     
-    func newSuiteA(m:Master)->Suite
+    class func newSuiteA(m:Master)->Suite
     {
         var random : Suite = Suite(m: m);
         random.etat=Etat.CACHE;
