@@ -18,9 +18,9 @@ class Master: Observable{
     
     class var NB_SUITE:Int32{return 10}
     var historique:[Suite] = []
-    var suiteAleatoire:Suite?
-    var etat:Etat?
-    var selectedColor:Color?
+    var suiteAleatoire:Suite
+    var etat:Etat
+    var selectedColor:Color
     var currentIndex:Int32 = 0
     
     override init()
@@ -116,10 +116,22 @@ class Master: Observable{
                 currentIndex = Master.NB_SUITE - 1
 				setEtat(Etat.PERDU)
             }
-    
+        }
     }
     
+    func description()->String
+    {
+        var tmp:String = ""
+        tmp += "\nSuite aléatoire :"+suiteAleatoire.description+"\nHistorique:"
+        for i in 0...Master.NB_SUITE
+        {
+                tmp += historique[i].desciption()
+        }
+        return tmp
+    }
     
-    
+    func getCurrentIndex()->Int32
+    {
+        return self.currentIndex
     }
 }
