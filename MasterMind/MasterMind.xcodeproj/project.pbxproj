@@ -14,6 +14,7 @@
 		4757A0861ABC1D9E00DA9FB5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4757A0851ABC1D9E00DA9FB5 /* Images.xcassets */; };
 		4757A0891ABC1D9E00DA9FB5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4757A0871ABC1D9E00DA9FB5 /* Main.storyboard */; };
 		4757A0951ABC1D9E00DA9FB5 /* MasterMindTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4757A0941ABC1D9E00DA9FB5 /* MasterMindTests.swift */; };
+		4757A0A01ABC239E00DA9FB5 /* Master.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4757A09F1ABC239E00DA9FB5 /* Master.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		4757A08E1ABC1D9E00DA9FB5 /* MasterMindTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MasterMindTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4757A0931ABC1D9E00DA9FB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4757A0941ABC1D9E00DA9FB5 /* MasterMindTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterMindTests.swift; sourceTree = "<group>"; };
+		4757A09F1ABC239E00DA9FB5 /* Master.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Master.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 		4757A07E1ABC1D9E00DA9FB5 /* MasterMind */ = {
 			isa = PBXGroup;
 			children = (
+				4757A09E1ABC235E00DA9FB5 /* Model */,
 				3E1F65C51ABC1F84009A7921 /* Obs */,
 				4757A0811ABC1D9E00DA9FB5 /* AppDelegate.swift */,
 				4757A0831ABC1D9E00DA9FB5 /* ViewController.swift */,
@@ -121,6 +124,14 @@
 				4757A0931ABC1D9E00DA9FB5 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4757A09E1ABC235E00DA9FB5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4757A09F1ABC239E00DA9FB5 /* Master.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -222,6 +233,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4757A0A01ABC239E00DA9FB5 /* Master.swift in Sources */,
 				3E1F65C91ABC2024009A7921 /* Observable.swift in Sources */,
 				4757A0841ABC1D9E00DA9FB5 /* ViewController.swift in Sources */,
 				3E1F65C71ABC1FC9009A7921 /* Observer.swift in Sources */,
