@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class Master: Observable, NilLiteralConvertible {
+class Master: Observable{
     enum Etat {
         case EN_COURS, GAGNE, PERDU
     }
@@ -18,9 +18,9 @@ class Master: Observable, NilLiteralConvertible {
     
     class var NB_SUITE:Int32{return 10}
     var historique:[Suite] = []
-    var suiteAleatoire:Suite
-    var etat:Etat
-    var selectedColor:Color
+    var suiteAleatoire:Suite?
+    var etat:Etat?
+    var selectedColor:Color?
     var currentIndex:Int32 = 0
     
     override init()
@@ -64,7 +64,7 @@ class Master: Observable, NilLiteralConvertible {
         historique[currentIndex].setEtat(Suite.Etat.ACTIF)
     }
     
-    func getSuite(index:Int32)->Suite
+    func getSuite(index:Int32)->Suite?
     {
         if (index < Master.NB_SUITE){
             return historique(index)
