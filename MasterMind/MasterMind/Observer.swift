@@ -8,6 +8,10 @@
 
 import Cocoa
 
-class Observer: NSObject {
+public class Observer: NSObject {
+    
+    public func Update()
+    {
+    }
 
 }
