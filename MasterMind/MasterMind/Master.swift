@@ -17,7 +17,7 @@ class Master: Observable{
     }
     
     class var NB_SUITE:Int32{return 10}
-    var historique:[Suite] = []
+    var historique:[Suite]
     var suiteAleatoire:Suite
     var etat:Etat
     var selectedColor:Color
@@ -30,7 +30,7 @@ class Master: Observable{
         suiteAleatoire.setEtat(Suite.Etat.CACHE)
         for i in 0...Master.NB_SUITE
         {
-            historique.append(Suite(self))
+            historique.append(Suite(m:self))
         }
     
         selectedColor = Color.VIDE
@@ -41,11 +41,13 @@ class Master: Observable{
     
     class func newRandMastermind()->Master
     {
+        var tmpSuite:Suite = Suite(self)
+        tmpSuite.validated()
         var tmp:Master = Master()
         for i in 0...NB_SUITE
         {
-            tmp.historique[i] = Suite.newSuiteA(tmp)
-            tmp.historique[i].validated()
+            tmp.historique.append(Suite.newSuiteA(tmp))
+            (tmp.historique[i] as Suite).validated()
         }
         return tmp
     }

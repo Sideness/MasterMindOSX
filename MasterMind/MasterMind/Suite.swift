@@ -102,20 +102,20 @@ class Suite: Observable{
         var tmp:String = "\n";
         for i in 0...Suite.NB_PION
         {
-            tmp+=" "+self.myTabCase[i].ToString();
+            tmp += " "+self.myTabCase[i].ToString();
     
         }
-        return tmp+" noir : "+noir+" blanc : "+blanc+"  Etat: "+etat;
+        return "\(tmp) noir : \(noir) blanc : \(blanc) Etat: \(etat)";
     }
     
     /** calcule et retourne la valeur de la donnée membre black d'une suite */
     func black()->Int32
     {
         var black : Int32=0;
-        var tmp : [Case]=monMaster.getSuiteA().getTabCase();
+        var tmp:[Case] = monMaster.getSuiteA().getTabCase();
         for i in 0...Suite.NB_PION
         {
-            if(this.myTabCase[i].getColor()==tmp[i].getColor())
+            if(self.myTabCase[i].getColor()==tmp[i].getColor())
             {
                 black++;
             }
@@ -129,7 +129,7 @@ class Suite: Observable{
     /// <returns></returns>
     func grey()->Int32
     {
-        var gris:Int23=0;
+        var gris:Int32=0;
         var copie:[Case] = monMaster.getSuiteA().getTabCase().ToList<Case>();
         for i in 0...Suite.NB_PION
         {
@@ -155,7 +155,7 @@ class Suite: Observable{
         noir=black();
         blanc=white();
         setEtat(Etat.VALIDE);
-        if (noir == NB_PION)
+        if (noir == Suite.NB_PION)
         {
             monMaster.setEtat(Master.Etat.GAGNE);
         }
