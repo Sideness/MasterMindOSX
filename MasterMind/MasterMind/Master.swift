@@ -8,6 +8,15 @@
 
 import Cocoa
 
-class Master: Observable {
-        
+public class Master: Observable {
+    public enum Etat {
+        case EN_COURS, GAGNE, PERDU
+    }
+    
+    class var NB_SUITE:Int32{return 10}
+    var historique:Suite = []
+    var suiteAleatoire:Suite
+    var etat:Etat
+    var selectedColor:Color
+    var currentIndex:int
 }
