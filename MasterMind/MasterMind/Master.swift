@@ -8,8 +8,8 @@
 
 import Cocoa
 
-public class Master: Observable {
-    public enum Etat {
+class Master: Observable {
+    enum Etat {
         case EN_COURS, GAGNE, PERDU
     }
     
