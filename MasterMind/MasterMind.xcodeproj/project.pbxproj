@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E1F65C71ABC1FC9009A7921 /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1F65C61ABC1FC9009A7921 /* Observer.swift */; };
+		3E1F65C91ABC2024009A7921 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1F65C81ABC2024009A7921 /* Observable.swift */; };
 		4757A0821ABC1D9E00DA9FB5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4757A0811ABC1D9E00DA9FB5 /* AppDelegate.swift */; };
 		4757A0841ABC1D9E00DA9FB5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4757A0831ABC1D9E00DA9FB5 /* ViewController.swift */; };
 		4757A0861ABC1D9E00DA9FB5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4757A0851ABC1D9E00DA9FB5 /* Images.xcassets */; };
@@ -25,6 +27,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3E1F65C61ABC1FC9009A7921 /* Observer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
+		3E1F65C81ABC2024009A7921 /* Observable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		4757A07C1ABC1D9E00DA9FB5 /* MasterMind.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MasterMind.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4757A0801ABC1D9E00DA9FB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4757A0811ABC1D9E00DA9FB5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -54,6 +58,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3E1F65C51ABC1F84009A7921 /* Obs */ = {
+			isa = PBXGroup;
+			children = (
+				3E1F65C61ABC1FC9009A7921 /* Observer.swift */,
+				3E1F65C81ABC2024009A7921 /* Observable.swift */,
+			);
+			name = Obs;
+			sourceTree = "<group>";
+		};
 		4757A0731ABC1D9E00DA9FB5 = {
 			isa = PBXGroup;
 			children = (
@@ -75,6 +88,7 @@
 		4757A07E1ABC1D9E00DA9FB5 /* MasterMind */ = {
 			isa = PBXGroup;
 			children = (
+				3E1F65C51ABC1F84009A7921 /* Obs */,
 				4757A0811ABC1D9E00DA9FB5 /* AppDelegate.swift */,
 				4757A0831ABC1D9E00DA9FB5 /* ViewController.swift */,
 				4757A0851ABC1D9E00DA9FB5 /* Images.xcassets */,
@@ -208,7 +222,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E1F65C91ABC2024009A7921 /* Observable.swift in Sources */,
 				4757A0841ABC1D9E00DA9FB5 /* ViewController.swift in Sources */,
+				3E1F65C71ABC1FC9009A7921 /* Observer.swift in Sources */,
 				4757A0821ABC1D9E00DA9FB5 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -397,6 +413,7 @@
 				4757A09A1ABC1D9E00DA9FB5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4757A09B1ABC1D9E00DA9FB5 /* Build configuration list for PBXNativeTarget "MasterMindTests" */ = {
 			isa = XCConfigurationList;
@@ -405,6 +422,7 @@
 				4757A09D1ABC1D9E00DA9FB5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
