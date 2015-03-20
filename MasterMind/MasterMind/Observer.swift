@@ -10,8 +10,13 @@ import Cocoa
 
 public class Observer: NSObject {
     
+    override init() {
+
+    }
+    
     public func Update()
     {
     }
-
+    
+    
 }
