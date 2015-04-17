@@ -27,7 +27,7 @@ class Master: Observable{
         suiteAleatoire = Suite.newSuiteA(self)
         suiteAleatoire?.validated()
         suiteAleatoire?.setEtat(Suite.Etat.CACHE)
-        for i in 0...Master.NB_SUITE
+        for i in 0...Master.NB_SUITE - 1
         {
             historique.append(Suite(m:self))
         }
@@ -43,9 +43,9 @@ class Master: Observable{
     {
         var tmp:Master = Master()
         var i:Int
-        for i=0; i<NB_SUITE; i++
+        for i=0; i < NB_SUITE; i++
         {
-            tmp.historique.append(Suite.newSuiteA(tmp))
+            tmp.historique[i] = Suite.newSuiteA(tmp)
             var s:Suite = tmp.historique[i] as Suite
             s.validated()
         }
