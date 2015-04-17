@@ -22,7 +22,7 @@ class Suite: Observable{
     var monMaster:Master;
     var etat:Etat;
     
-    
+        
     init(m:Master)
     {
         monMaster=m;
