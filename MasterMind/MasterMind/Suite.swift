@@ -30,7 +30,7 @@ class Suite: Observable{
         for i in 0...Suite.NB_PION
         {
 
-            myTabCase[i].append(Case(Color.VIDE,this))
+            myTabCase[i].append(Case(Color.VIDE,self))
         }
     }
     

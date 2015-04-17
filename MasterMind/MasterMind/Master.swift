@@ -12,16 +12,13 @@ class Master: Observable{
     enum Etat {
         case EN_COURS, GAGNE, PERDU
     }
-    enum Color{
-        case VIDE, VERT, JAUNE, BLEU, MARRON, VIOLET, ROUGE
-    }
     
-    class var NB_SUITE:Int32{return 10}
+    class var NB_SUITE:Int{return 10}
     var historique:[Suite]
     var suiteAleatoire:Suite
     var etat:Etat
     var selectedColor:Color
-    var currentIndex:Int32 = 0
+    var currentIndex:Int = 0
     
     override init()
     {
@@ -36,18 +33,19 @@ class Master: Observable{
         selectedColor = Color.VIDE
         etat = Etat.EN_COURS
         currentIndex = 0
-        historique[currentIndex].setEtat(Suite.Etat.ACTIF)
+        var s:Suite = historique[currentIndex]
+        s.setEtat(Suite.Etat.ACTIF)
     }
     
     class func newRandMastermind()->Master
     {
-        var tmpSuite:Suite = Suite(self)
-        tmpSuite.validated()
         var tmp:Master = Master()
-        for i in 0...NB_SUITE
+        var i:Int
+        for i=0; i<NB_SUITE; i++
         {
             tmp.historique.append(Suite.newSuiteA(tmp))
-            (tmp.historique[i] as Suite).validated()
+            var s:Suite = tmp.historique[i] as Suite
+            s.validated()
         }
         return tmp
     }
@@ -66,10 +64,10 @@ class Master: Observable{
         historique[currentIndex].setEtat(Suite.Etat.ACTIF)
     }
     
-    func getSuite(index:Int32)->Suite?
+    func getSuite(index:Int)->Suite?
     {
         if (index < Master.NB_SUITE){
-            return historique(index)
+            return historique[index]
         }
         else{
             return nil
@@ -125,14 +123,16 @@ class Master: Observable{
     {
         var tmp:String = ""
         tmp += "\nSuite aléatoire :"+suiteAleatoire.description+"\nHistorique:"
-        for i in 0...Master.NB_SUITE
+        var i:Int
+        for i=0; i<Master.NB_SUITE; i++
         {
-                tmp += historique[i].desciption()
+            var s:Suite = historique[i]
+                tmp += s.desciption()
         }
         return tmp
     }
     
-    func getCurrentIndex()->Int32
+    func getCurrentIndex()->Int
     {
         return self.currentIndex
     }
