@@ -13,24 +13,44 @@ class Suite: Observable{
     enum Etat
     {
         case INITIAL, ACTIF, VALIDE, CACHE
+        
+        var description : String {
+            get {
+                switch(self) {
+                case INITIAL:
+                    return "INITIAL"
+                case ACTIF:
+                    return "ACTIF"
+                case VALIDE:
+                    return "VALIDE"
+                case CACHE:
+                    return "CACHE"
+                }
+            }
+        }
     }
     
-    class var NB_PION : Int32  {return 4};
-    var myTabCase:[Case] = [];
-    var noir:Int32 = 0;
-    var blanc:Int32 = 0;
-    var monMaster:Master;
-    var etat:Etat;
+    class var NB_PION : Int {return 4};
+    var myTabCase:[Case?] = [Case?](count: Suite.NB_PION, repeatedValue: nil)
+    var noir:Int = 0;
+    var blanc:Int = 0;
+    var monMaster:Master? = nil;
+    var etat:Etat = Etat.INITIAL;
     
     
     init(m:Master)
     {
+        super.init()
+
         monMaster=m;
         etat=Etat.INITIAL;
-        for i in 0...Suite.NB_PION
+        var color:Case.Color = Case.Color.VIDE
+        var i:Int
+        for i = 0; i < Suite.NB_PION; i++
         {
 
-            myTabCase[i].append(Case(Color.VIDE,self))
+            myTabCase[i] = Case(s:self);
+            myTabCase[i]?.setColor(color)
         }
     }
     
@@ -38,9 +58,10 @@ class Suite: Observable{
     {
         var random : Suite = Suite(m: m);
         random.etat=Etat.CACHE;
-        for i in 0...Suite.NB_PION
+        var i:Int
+               for i = 0; i < Suite.NB_PION; i++
         {
-            random.myTabCase[i] = Case(Extensions.randomColor(),random);
+            random.myTabCase[i] = Case(c:Case.randomColor(),s:random);
         }
     
         return random;
@@ -48,18 +69,18 @@ class Suite: Observable{
     
     func getMaster()->Master
     {
-        return monMaster;
+        return monMaster!;
     }
     
-    func getCase(index:Int32)->Case
+    func getCase(index:Int)->Case?
     {
-        if(index<NB_PION)
+        if(index < Suite.NB_PION)
         {
             return myTabCase[index];
         }
         else
         {
-            return null;
+            return nil;
         }
     }
     
@@ -67,19 +88,19 @@ class Suite: Observable{
     {
         for i in 0...Suite.NB_PION
         {
-            myTabCase[i].reset();
+            myTabCase[i]?.reset();
         }
         noir=0;
         blanc=0;
         setEtat(Etat.INITIAL);
     }
     
-    func getNoir()->Int32
+    func getNoir()->Int
     {
         return noir;
     }
     
-    func getBlanc()->Int32
+    func getBlanc()->Int
     {
         return blanc;
     }
@@ -100,22 +121,22 @@ class Suite: Observable{
     func description()->String
     {
         var tmp:String = "\n";
-        for i in 0...Suite.NB_PION
+        for i in 0...Suite.NB_PION-1
         {
-            tmp += " "+self.myTabCase[i].ToString();
+            tmp += " "+self.myTabCase[i]!.description();
     
         }
-        return "\(tmp) noir : \(noir) blanc : \(blanc) Etat: \(etat)";
+        return "\(tmp) noir : \(noir) blanc : \(blanc) Etat: \(etat.description)";
     }
     
     /** calcule et retourne la valeur de la donnée membre black d'une suite */
-    func black()->Int32
+    func black()->Int
     {
-        var black : Int32=0;
-        var tmp:[Case] = monMaster.getSuiteA().getTabCase();
-        for i in 0...Suite.NB_PION
+        var black : Int=0;
+        var tmp:[Case?] = monMaster!.getSuiteA().getTabCase();
+        for i in 0...Suite.NB_PION-1
         {
-            if(self.myTabCase[i].getColor()==tmp[i].getColor())
+            if(self.myTabCase[i]!.getColor()==tmp[i]!.getColor())
             {
                 black++;
             }
@@ -127,13 +148,13 @@ class Suite: Observable{
     ///  calcule et retourne la somme des nombres black et white d'une suite
     /// </summary>
     /// <returns></returns>
-    func grey()->Int32
+    func grey()->Int
     {
-        var gris:Int32=0;
-        var copie:[Case] = monMaster.getSuiteA().getTabCase().ToList<Case>();
-        for i in 0...Suite.NB_PION
+        var gris:Int=0;
+        var copie:[Case?] = monMaster!.getSuiteA().getTabCase()
+        for i in 0...Suite.NB_PION-1
         {
-            gris+=myTabCase[i].drawnWithoutReplacement(copie);
+            gris+=myTabCase[i]!.drawnWithoutReplacement(copie);
         }
         return gris;
     }
@@ -142,7 +163,7 @@ class Suite: Observable{
     /// Calcul et retourne la valeur de la donnée membre white d'une suite
     /// </summary>
     /// <returns></returns>
-    func white()->Int32
+    func white()->Int
     {
         return grey()-black();
     }
@@ -157,13 +178,13 @@ class Suite: Observable{
         setEtat(Etat.VALIDE);
         if (noir == Suite.NB_PION)
         {
-            monMaster.setEtat(Master.Etat.GAGNE);
+            monMaster!.setEtat(Master.Etat.GAGNE);
         }
     
     
     }
     
-    func getTabCase()->[Case]
+    func getTabCase()->[Case?]
     {
         return myTabCase;
     }

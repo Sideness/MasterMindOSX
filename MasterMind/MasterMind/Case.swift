@@ -10,8 +10,36 @@ import Cocoa
 
 class Case: Observable {
     
-    enum Color{
-        case VIDE, VERT, JAUNE, BLEU, MARRON, VIOLET, ROUGE
+    enum Color : UInt32{
+        case VIDE = 1,
+        VERT = 2,
+        JAUNE = 3,
+        BLEU = 4,
+        MARRON = 5,
+        VIOLET = 6,
+        ROUGE = 7
+        
+        var description : String {
+            get {
+                switch(self) {
+                case VIDE:
+                    return "VIDE"
+                case VERT:
+                    return "VERT"
+                case JAUNE:
+                    return "JAUNE"
+                case BLEU:
+                    return "BLEU"
+                case MARRON:
+                    return "MARRON"
+                case VIOLET:
+                    return "VIOLET"
+                case ROUGE:
+                    return "ROUGE"
+                }
+            }
+        }
+
     }
     
     var myColor:Color;
@@ -34,29 +62,29 @@ class Case: Observable {
     
     class func randomColor()->Color
     {
-        var randomIndex:UInt32= arc4random(6)
+        var randomIndex:UInt32 = 2 + arc4random_uniform(6)
     
-        return (Color)randomIndex;
+        return Color(rawValue: randomIndex)!;
     }
     
     class func newRandCase(s:Suite)->Case
     {
         var tmp:Case = Case(s:s)
-        tmp.setColor(Extensions.randomColor())
+        tmp.setColor(randomColor())
     
         return tmp;
     }
     
-    public void reset()
+    func reset()
     {
         myColor = Color.VIDE;
     
         notifyObservers();
     }
     
-    public void setColor(Color c)
+    func setColor(c:Color)
     {
-        if (mySuite==null || mySuite.getEtat() == Suite.Etat.ACTIF)
+        if ( mySuite.getEtat() == Suite.Etat.ACTIF)
         {
             myColor = c;
     
@@ -64,10 +92,11 @@ class Case: Observable {
         }
     }
     
-    public Color getColor()
+    func getColor()->Color
     {
         return myColor;
     }
+    
     
     /// <summary>
     /// retourne vrai si le pion courant est de la même couleur que le pion en paramètre
@@ -75,35 +104,39 @@ class Case: Observable {
     /// </summary>
     /// <param name="c"></param>
     /// <returns></returns>
-    public bool isSameColor(Case c)
+    func isSameColor(c:Case)->Bool
     {
-        if (c.getColor() == this.getColor())
+        if (c.getColor() == self.getColor()){
             return true;
-        else
+        }
+        else{
             return false;
+        }
     }
     
-    public int drawnWithoutReplacement(List<Case> listP)
+    func drawnWithoutReplacement(var listP:[Case?])->Int
     {
-        for (int j = 0; j < listP.Count; j++)
+
+        for var j = 0; j < listP.count; j++
         {
-            if (isSameColor(listP.ElementAt(j)))
+            if (isSameColor(listP[j]!))
             {
-                listP.RemoveAt(j);
+                let removed = listP.removeAtIndex(j)
                 return 1;
             }
         }
         return 0;
     }
     
-    public SuiteHandler getSuite()
+    func getSuite()->Suite
     {
         return mySuite;
     }
     
-    public override string ToString()
+    func description()->String
     {
-        return myColor.ToString();
+        return myColor.description
     }
+
     
 }

@@ -14,6 +14,10 @@ class ViewController: NSViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        var myMaster:Master = Master()
+        println(myMaster.description)
+        
     }
 
     override var representedObject: AnyObject? {

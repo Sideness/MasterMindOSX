@@ -14,23 +14,25 @@ class Master: Observable{
     }
     
     class var NB_SUITE:Int{return 10}
-    var historique:[Suite]
-    var suiteAleatoire:Suite
-    var etat:Etat
-    var selectedColor:Color
+    var historique:[Suite] = []
+    var suiteAleatoire:Suite? = nil
+    var etat:Etat = Etat.EN_COURS
+    var selectedColor:Case.Color = Case.Color.VIDE
     var currentIndex:Int = 0
+    
     
     override init()
     {
+        super.init()
         suiteAleatoire = Suite.newSuiteA(self)
-        suiteAleatoire.validated()
-        suiteAleatoire.setEtat(Suite.Etat.CACHE)
+        suiteAleatoire?.validated()
+        suiteAleatoire?.setEtat(Suite.Etat.CACHE)
         for i in 0...Master.NB_SUITE
         {
             historique.append(Suite(m:self))
         }
     
-        selectedColor = Color.VIDE
+        selectedColor = Case.Color.VIDE
         etat = Etat.EN_COURS
         currentIndex = 0
         var s:Suite = historique[currentIndex]
@@ -76,16 +78,16 @@ class Master: Observable{
     
     func getSuiteA()->Suite
     {
-        return self.suiteAleatoire
+        return self.suiteAleatoire!
     }
     
-    func getSelectedColor()->Color
+    func getSelectedColor()->Case.Color
     {
         return selectedColor
     }
     
     
-    func setSelectedColor(c:Color)
+    func setSelectedColor(c:Case.Color)
     {
         selectedColor = c
         notifyObservers()
@@ -122,12 +124,12 @@ class Master: Observable{
     func description()->String
     {
         var tmp:String = ""
-        tmp += "\nSuite aléatoire :"+suiteAleatoire.description+"\nHistorique:"
+        tmp += "\nSuite aléatoire :"+suiteAleatoire!.description+"\nHistorique:"
         var i:Int
         for i=0; i<Master.NB_SUITE; i++
         {
             var s:Suite = historique[i]
-                tmp += s.desciption()
+                tmp += s.description()
         }
         return tmp
     }
