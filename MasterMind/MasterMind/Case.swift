@@ -133,7 +133,7 @@ class Case: Observable {
         return mySuite;
     }
     
-    func description()->String
+    func toString()->String
     {
         return myColor.description
     }

@@ -118,12 +118,12 @@ class Suite: Observable{
     }
     
     
-    func description()->String
+    func toString()->String
     {
         var tmp:String = "\n";
         for i in 0...Suite.NB_PION-1
         {
-            tmp += " "+self.myTabCase[i]!.description();
+            tmp += " "+self.myTabCase[i]!.toString();
     
         }
         return "\(tmp) noir : \(noir) blanc : \(blanc) Etat: \(etat.description)";

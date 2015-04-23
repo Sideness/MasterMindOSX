@@ -121,15 +121,15 @@ class Master: Observable{
         }
     }
     
-    func description()->String
+    func toString()->String
     {
         var tmp:String = ""
-        tmp += "\nSuite aléatoire :"+suiteAleatoire!.description+"\nHistorique:"
+        tmp += "\nSuite aléatoire :"+suiteAleatoire!.toString()+"\nHistorique:"
         var i:Int
         for i=0; i<Master.NB_SUITE; i++
         {
             var s:Suite = historique[i]
-                tmp += s.description()
+                tmp += s.toString()
         }
         return tmp
     }

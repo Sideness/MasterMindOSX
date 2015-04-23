@@ -16,7 +16,7 @@ class ViewController: NSViewController {
         // Do any additional setup after loading the view.
         
         var myMaster:Master = Master()
-        println(myMaster.description)
+        println(myMaster.toString())
         
     }
 
