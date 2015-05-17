@@ -10,7 +10,7 @@ import Cocoa
 
 class Case: Observable {
     
-    enum Color : UInt32{
+    enum Color : UInt{
         case VIDE = 1,
         VERT = 2,
         JAUNE = 3,
@@ -62,7 +62,7 @@ class Case: Observable {
     
     class func randomColor()->Color
     {
-        var randomIndex:UInt32 = 2 + arc4random_uniform(6)
+        var randomIndex:UInt = UInt(2 + arc4random_uniform(6))
     
         return Color(rawValue: randomIndex)!;
     }
