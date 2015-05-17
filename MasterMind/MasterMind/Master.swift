@@ -13,7 +13,7 @@ class Master: Observable{
         case EN_COURS, GAGNE, PERDU
     }
     
-    class var NB_SUITE:Int{return 10}
+    class var NB_SUITE:Int{return 8}
     var historique:[Suite] = []
     var suiteAleatoire:Suite? = nil
     var etat:Etat = Etat.EN_COURS
